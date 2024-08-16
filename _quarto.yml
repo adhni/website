@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "tutorial-4"
+  reader-mode: true
+  navbar:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Blog
+        href: blog.qmd
+      - text: About
+        href: about.qmd
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/adhni
+      - icon: linkedin
+        href: https://github.com/adhni
+      - icon: instagram
+        href: https://github.com/adhni
+format:
+  html:
+    theme: cyborg
+    css: styles.css
+
+
+
