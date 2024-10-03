@@ -5,7 +5,13 @@ image: profile.jpg
 
 # Adhni Mulachela
 
-Welcome to my personal website! Here are some links to my professional profiles:
 
-- ![Github](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png){width=30px} [Github](https://github.com/adhni)
-- ![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png){width=30px} [LinkedIn](https://www.linkedin.com/in/adhni/)
+
+![Profile Picture](profile.jpg){width=150px style="display: block; margin-left: auto; margin-right: auto;"}
+
+Welcome to my personal website! I am a Master of Business Analytics student at Monash University. Here, you'll find some of my assignments under the tag **"assignment"**, as well as posts on random topics I find interesting under the tag **"dumps"**. Feel free to explore my work and professional profiles below.
+
+###  Profiles
+
+- **[Github](https://github.com/adhni)** ![Github](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png){width=30px}
+- **[LinkedIn](https://www.linkedin.com/in/adhni/)** ![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png){width=30px}

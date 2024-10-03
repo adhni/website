@@ -154,7 +154,7 @@ figure2 <- ggplot(filtered_data, aes(x = Ratio_Athletes_Per_Medal)) +
   theme_minimal()
 ```
 
-![Olympic Image](angkat-berat.png.webp){ width=800 height=600 }
+![Rizky Juniansyah winning Indonesia's first ever Weightlifting Gold Medal in Olympics History](angkat-berat.png.webp){ width=800 height=600 }
 
 
 

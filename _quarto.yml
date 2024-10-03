@@ -23,6 +23,7 @@ format:
   html:
     theme: journal
     css: styles.css
+    include-after-body: footer.Rhtml
 
 
 
