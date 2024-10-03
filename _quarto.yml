@@ -6,7 +6,7 @@ website:
   title: "Adhni"
   reader-mode: true
   navbar:
-    logo: "profile.jpg"
+    logo: "profile.jpeg"
     left:
       - text: Home
         href: index.qmd
