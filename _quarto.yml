@@ -10,14 +10,14 @@ website:
     left:
       - text: Home
         href: index.qmd
-      - text: Blog
-        href: blog.qmd
     right:
       - about.qmd
       - icon: github
         href: https://github.com/adhni
       - icon: linkedin
         href: https://www.linkedin.com/in/adhni/
+      - text: Resume 
+        href: resume.pdf  # Add this line
 
 format:
   html:
