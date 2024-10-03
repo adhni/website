@@ -1,0 +1,216 @@
+---
+title: "Rethinking Olympic Strategies"
+author: "Adhni"
+date: "2024-09-13"
+categories: [analysis]
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      error = FALSE)
+```
+
+
+```{r}
+library(tidyverse)
+library(rvest)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(kableExtra)
+library(ggplot2)
+library(plotly)
+```
+
+```{r}
+# Read the webpage
+page <- read_html("https://en.wikipedia.org/wiki/2024_Summer_Olympics_medal_table")
+
+# Extract the medal table
+medal_table <- page %>%
+  html_node(xpath = "//table[contains(@class, 'wikitable')]") %>%
+  html_table()
+
+# Clean up the data
+medal_table <- medal_table %>%
+  mutate(across(everything(), ~ str_replace_all(., c("‡" = "",
+                                                      "\\*" = "",
+                                                      "\\[A\\]" = "",
+                                                      "\\[B\\]" = "")))) %>%
+  # Remove the last row
+  slice(-n()) %>%
+  # Remove the first column
+  select(-1)
+
+```
+
+```{r}
+countries_with_athletes <- c("Afghanistan (6)", "Albania (8)", "Algeria (45)", "American Samoa (2)",
+                              "Andorra (2)", "Angola (24)", "Antigua and Barbuda (5)", "Argentina (136)",
+                              "Armenia (15)", "Aruba (6)", "Australia (461)", "Austria (78)",
+                              "Azerbaijan (48)", "Bahamas (18)", "Bahrain (13)", "Bangladesh (5)",
+                              "Barbados (4)", "Belgium (165)", "Belize (1)", "Benin (5)", "Bermuda (8)",
+                              "Bhutan (3)", "Bolivia (4)", "Bosnia and Herzegovina (5)", "Botswana (11)",
+                              "Brazil (277)", "British Virgin Islands (4)", "Brunei (3)", "Bulgaria (46)",
+                              "Burkina Faso (8)", "Burundi (7)", "Cambodia (3)", "Cameroon (6)",
+                              "Canada (315)", "Cape Verde (7)", "Cayman Islands (4)", "Central African Republic (4)",
+                              "Chad (3)", "Chile (48)", "China (388)", "Colombia (87)", "Comoros (4)",
+                              "Cook Islands (2)", "Costa Rica (6)", "Croatia (73)", "Cuba (61)",
+                              "Cyprus (16)", "Czech Republic (110)", "Democratic Republic of the Congo (6)",
+                              "Denmark (124)", "Djibouti (7)", "Dominica (4)", "Dominican Republic (58)",
+                              "East Timor (4)", "Ecuador (40)", "Egypt (148)", "El Salvador (8)",
+                              "Equatorial Guinea (3)", "Eritrea (12)", "Estonia (24)", "Eswatini (3)",
+                              "Ethiopia (34)", "Fiji (33)", "Finland (56)", "France (573)", "Gabon (5)",
+                              "The Gambia (7)", "Georgia (28)", "Germany (428)", "Ghana (8)",
+                              "Great Britain (327)", "Greece (100)", "Grenada (6)", "Guam (8)",
+                              "Guatemala (16)", "Guinea (24)", "Guinea-Bissau (6)", "Guyana (5)",
+                              "Haiti (7)", "Honduras (4)", "Hong Kong (36)", "Hungary (170)", "Iceland (5)",
+                              "India (117)", "Individual Neutral Athletes (32)", "Indonesia (29)", "Iran (41)",
+                              "Iraq (22)", "Ireland (134)", "Israel (88)", "Italy (402)", "Ivory Coast (11)",
+                              "Jamaica (58)", "Japan (403)", "Jordan (12)", "Kazakhstan (79)", "Kenya (72)",
+                              "Kiribati (3)", "Kosovo (9)", "Kuwait (9)", "Kyrgyzstan (16)", "Laos (4)",
+                              "Latvia (29)", "Lebanon (10)", "Lesotho (3)", "Liberia (8)", "Libya (6)",
+                              "Liechtenstein (1)", "Lithuania (51)", "Luxembourg (14)", "Madagascar (7)",
+                              "Malawi (3)", "Malaysia (26)", "Maldives (5)", "Mali (23)", "Malta (5)",
+                              "Marshall Islands (4)", "Mauritania (2)", "Mauritius (13)", "Mexico (107)",
+                              "Federated States of Micronesia (3)", "Moldova (26)", "Monaco (6)",
+                              "Mongolia (32)", "Montenegro (19)", "Morocco (59)", "Mozambique (7)",
+                              "Myanmar (2)", "Namibia (4)", "Nauru (1)", "Nepal (7)", "Netherlands (273)",
+                              "New Zealand (195)", "Nicaragua (7)", "Niger (7)", "Nigeria (88)",
+                              "North Korea (16)", "North Macedonia (7)", "Norway (107)", "Oman (4)",
+                              "Pakistan (7)", "Palau (3)", "Palestine (8)", "Panama (8)",
+                              "Papua New Guinea (7)", "Paraguay (28)", "Peru (26)", "Philippines (22)",
+                              "Poland (210)", "Portugal (73)", "Puerto Rico (51)", "Qatar (14)",
+                              "Refugee Olympic Team (37)", "Republic of the Congo (4)", "Romania (106)",
+                              "Rwanda (8)", "Saint Kitts and Nevis (3)", "Saint Lucia (4)",
+                              "Saint Vincent and the Grenadines (4)", "Samoa (24)", "San Marino (5)",
+                              "São Tomé and Príncipe (3)", "Saudi Arabia (9)", "Senegal (11)",
+                              "Serbia (113)", "Seychelles (3)", "Sierra Leone (4)", "Singapore (23)",
+                              "Slovakia (28)", "Slovenia (90)", "Solomon Islands (2)", "Somalia (1)",
+                              "South Africa (149)", "South Korea (141)", "South Sudan (14)", "Spain (383)",
+                              "Sri Lanka (6)", "Sudan (4)", "Suriname (5)", "Sweden (118)",
+                              "Switzerland (127)", "Syria (6)", "Chinese Taipei (60)", "Tajikistan (14)",
+                              "Tanzania (7)", "Thailand (51)", "Togo (5)", "Tonga (4)",
+                              "Trinidad and Tobago (18)", "Tunisia (27)", "Turkey (101)",
+                              "Turkmenistan (6)", "Tuvalu (2)", "Uganda (24)", "Ukraine (140)",
+                              "United Arab Emirates (13)", "United States (592)", "Uruguay (25)",
+                              "Uzbekistan (86)", "Vanuatu (6)", "Venezuela (33)", "Vietnam (16)",
+                              "Virgin Islands (5)", "Yemen (4)", "Zambia (27)", "Zimbabwe (7)")
+
+# Extract country names and number of athletes
+countries <- gsub("\\s*\\(.*\\)", "", countries_with_athletes)
+athletes <- as.numeric(gsub(".*\\((\\d+)\\)", "\\1", countries_with_athletes))
+
+# Create the data frame
+athlete_data <- data.frame(Country = countries, Number_of_Athletes = athletes)
+
+```
+
+```{r}
+# Perform the left join with correct syntax
+merged_data <- athlete_data %>%
+  full_join(medal_table, by = c("Country" = "NOC"))
+
+merged_data <- merged_data %>%
+  mutate(across(-Country, ~ as.numeric(.)))
+
+# Replace NA values with 0
+merged_data[is.na(merged_data)] <- 0
+```
+
+```{r}
+# Filter out countries with no medals and outliers
+filtered_data <- merged_data %>%
+  filter(Total > 5) %>% 
+  mutate(Ratio_Athletes_Per_Medal = Number_of_Athletes / Total) %>%
+  filter(
+    Ratio_Athletes_Per_Medal >= quantile(Ratio_Athletes_Per_Medal, 0.25) - 1.5 * IQR(Ratio_Athletes_Per_Medal) &
+    Ratio_Athletes_Per_Medal <= quantile(Ratio_Athletes_Per_Medal, 0.75) + 1.5 * IQR(Ratio_Athletes_Per_Medal)
+  )
+```
+
+
+```{r fig1, fig.cap="Figure 1: Number of Athletes vs. Total Medal"}
+# Create the plot with expanded y-axis limits
+figure1 <- ggplot(filtered_data, aes(x = Number_of_Athletes, y = Total)) +  
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "Figure 1: Number of Athletes vs. Total Medal",
+       x = "Number of Qualified Athletes",
+       y = "Total Medal") +
+  theme_minimal() +
+  coord_cartesian(ylim = c(min(filtered_data$Total, na.rm = TRUE), 
+                            quantile(filtered_data$Total, 0.95, na.rm = TRUE)))
+# Convert to an interactive plot using plotly
+interactive_plot <- ggplotly(figure1)
+
+```
+
+```{r fig2, fig.cap="Figure 2: Distribution of Ratio of Athletes per Medal"}
+figure2 <- ggplot(filtered_data, aes(x = Ratio_Athletes_Per_Medal)) +
+  geom_histogram(binwidth = 3, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = "Figure 2: Distribution of Ratio of Athletes per Medal",
+       x = "Ratio of Athletes per Medal",
+       y = "Frequency") +
+  theme_minimal()
+```
+
+
+## Rethinking Olympic Strategies: The Correlation Between Number of Athletes and Medal Counts
+
+This report explores the relationship between the number of athletes a country sends to the Olympics and the total number of medals won. It reveals a strong positive correlation, indicating that countries should shift their focus from short-term incentives, like significant cash bonuses for medal winners, to long-term strategies aimed at increasing the number of athletes who qualify for the Games. By investing in athlete development and broadening participation, countries are likely to see more medals as a natural outcome.
+
+In the quest for Olympic success, many nations invest heavily in rewarding a few elite athletes with cash bonuses and other incentives (CNBC 2024). However, this focus on high-profile winners may overlook a crucial factor: the total number of athletes competing. This report investigates whether increasing the number of qualified athletes correlates with a higher medal tally, suggesting that a more effective strategy might be to broaden participation rather than concentrating on rewarding existing athletes.
+
+```{r}
+#| label: tbl-one
+#| tbl-cap: test
+kable(head(filtered_data), caption = "Table 1")
+```
+
+```{r}
+interactive_plot
+```
+
+The analysis demonstrates a significant correlation between the number of athletes and the number of medals won ( & [Figure 1](#fig-fig1)). Countries with a higher number of athletes generally secure more medals, suggesting that expanding the base of Olympic participants can lead to better overall performance. This finding highlights the inefficacy of strategies focused solely on rewarding medal winners and underscores the importance of investing in athlete development from a young age.
+
+```{r}
+figure2
+```
+
+The distribution of the ratio of athletes per medal [Figure 2](#fig-fig2) further reinforces the importance of broadening participation. By examining the spread of this ratio, we observe that countries with a lower ratio—indicating more athletes for each medal won—are less common. This suggests that countries with fewer athletes per medal are relatively rare, reinforcing the idea that a higher number of participants is associated with better medal outcomes. Countries that focus exclusively on incentivizing medal-winning may overlook the crucial step of preparing a larger pool of athletes, which is essential for sustained success. Investing in youth and expanding athlete programs can yield significant long-term benefits, making it a more effective strategy for improving Olympic performance.
+
+**Disclaimer**: It is important to note that the numbers are influenced by team sports such as football, where larger teams can skew the data. Despite this, the overall trend of a positive correlation between athlete numbers and medal counts remains valid.
+
+The findings suggest that countries aiming to boost their medal counts should shift their focus from short-term incentives to long-term athlete development. By investing in youth programs and increasing the number of athletes who qualify for the Olympics, nations are more likely to see improved medal outcomes. This approach emphasizes that success at the Olympics often follows from a broad base of qualified athletes rather than just a few high-profile winners.
+
+
+### Reference
+
+-   Wikipedia. (2024). 2024 Summer Olympics medal table.
+-   CNBC. (2024). Here’s how much athletes at the Paris Olympics earn for winning medals. Retrieved from CNBC
+-   R Core Team. (2024). R: A language and environment for statistical computing. R Foundation for Statistical Computing. https://www.R-project.org
+-   Wickham, H., & Henry, L. (2024). rvest: Easily web scrape data. https://cran.r-project.org/package=rvest
+-   Wickham, H. (2024). dplyr: A grammar of data manipulation. https://cran.r-project.org/package=dplyr
+-   Wickham, H. (2024). stringr: Simple, consistent string manipulation. https://cran.r-project.org/package=stringr
+-   Wickham, H. (2024). ggplot2: Create elegant data visualisations. https://cran.r-project.org/package=ggplot2
+-   OpenAI. (2024). ChatGPT: Language model for conversational AI. https://www.openai.com/chatgpt
+
+# Part B
+
+## Summary
+
+The report investigates the correlation between the number of athletes a country sends to the Olympics and the total number of medals won, highlighting that a broader base of qualified athletes leads to better overall performance. It suggests shifting from short-term incentives focused on medal-winning to long-term strategies aimed at increasing athlete participation and development.
+
+## Sections
+
+-   **Background:** The first paragraph, describing the current focus on rewarding elite athletes and the need to broaden participation, starting with the sentence: "In the quest for Olympic success, many nations invest heavily in rewarding a few elite athletes with cash bonuses and other incentives."
+
+-   **Lede:** The first two sentences, introducing the investigation into the correlation between the number of athletes and medals won, starting with the sentence: "This report explores the relationship between the number of athletes a country sends to the Olympics and the total number of medals won."
+
+-   **Summary:** The last paragraph, reiterating the key findings and suggesting a strategic shift in athlete development, starting with the sentence: "The findings suggest that countries aiming to boost their medal counts should shift their focus from short-term incentives to long-term athlete development."
+
+-   **Main Result:** The paragraphs discussing the analysis of the correlation and the distribution of athletes per medal, supported by @tbl-one, Figure 1 and Figure 2, starting with the sentence: "The analysis demonstrates a significant correlation between the number of athletes and the number of medals won (Figure 1)."

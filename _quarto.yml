@@ -3,27 +3,25 @@ project:
   output-dir: docs
 
 website:
-  title: "tutorial-4"
+  title: "Adhni"
   reader-mode: true
   navbar:
+    logo: "profile.jpg"
     left:
       - text: Home
         href: index.qmd
       - text: Blog
         href: blog.qmd
-      - text: About
-        href: about.qmd
     right:
       - about.qmd
       - icon: github
         href: https://github.com/adhni
       - icon: linkedin
-        href: https://github.com/adhni
-      - icon: instagram
-        href: https://github.com/adhni
+        href: https://www.linkedin.com/in/adhni/
+
 format:
   html:
-    theme: cyborg
+    theme: journal
     css: styles.css
 
 
