@@ -1,8 +1,8 @@
 ---
 title: "Rethinking Olympic Strategies"
-author: "Adhni"
-date: "2024-09-13"
-categories: [analysis]
+author: "Adhni Mulachela"
+date: "2024-10-04"
+categories: [Article]
 ---
 
 ```{r, echo=FALSE}
@@ -133,8 +133,7 @@ filtered_data <- merged_data %>%
 ```
 
 
-```{r fig1, fig.cap="Figure 1: Number of Athletes vs. Total Medal"}
-# Create the plot with expanded y-axis limits
+```{r}
 figure1 <- ggplot(filtered_data, aes(x = Number_of_Athletes, y = Total)) +  
   geom_point() +
   geom_smooth(method = "lm") +
@@ -144,50 +143,70 @@ figure1 <- ggplot(filtered_data, aes(x = Number_of_Athletes, y = Total)) +
   theme_minimal() +
   coord_cartesian(ylim = c(min(filtered_data$Total, na.rm = TRUE), 
                             quantile(filtered_data$Total, 0.95, na.rm = TRUE)))
-# Convert to an interactive plot using plotly
-interactive_plot <- ggplotly(figure1)
 
-```
+interactive_plot_one <- ggplotly(figure1)
 
-```{r fig2, fig.cap="Figure 2: Distribution of Ratio of Athletes per Medal"}
 figure2 <- ggplot(filtered_data, aes(x = Ratio_Athletes_Per_Medal)) +
-  geom_histogram(binwidth = 3, fill = "blue", color = "black", alpha = 0.7) +
+  geom_histogram(binwidth = 5, fill = "blue", color = "black", alpha = 0.7) +
   labs(title = "Figure 2: Distribution of Ratio of Athletes per Medal",
        x = "Ratio of Athletes per Medal",
        y = "Frequency") +
   theme_minimal()
 ```
 
+![Olympic Image](angkat-berat.png.webp){ width=800 height=600 }
+
+
 
 ## Rethinking Olympic Strategies: The Correlation Between Number of Athletes and Medal Counts
 
-This report explores the relationship between the number of athletes a country sends to the Olympics and the total number of medals won. It reveals a strong positive correlation, indicating that countries should shift their focus from short-term incentives, like significant cash bonuses for medal winners, to long-term strategies aimed at increasing the number of athletes who qualify for the Games. By investing in athlete development and broadening participation, countries are likely to see more medals as a natural outcome.
+### Problem Description
+This report addresses the relationship between the number of athletes a country sends to the Olympics and its medal count. The analysis explores whether countries should shift their focus from rewarding medal-winning athletes through cash incentives to a more long-term strategy of increasing athlete participation, which could result in higher medal tallies.
 
-In the quest for Olympic success, many nations invest heavily in rewarding a few elite athletes with cash bonuses and other incentives (CNBC 2024). However, this focus on high-profile winners may overlook a crucial factor: the total number of athletes competing. This report investigates whether increasing the number of qualified athletes correlates with a higher medal tally, suggesting that a more effective strategy might be to broaden participation rather than concentrating on rewarding existing athletes.
+### Data Description
+The data used in this analysis was sourced from the 2024 Summer Olympics medal table (Wikipedia, 2024). It includes variables for the total number of athletes a country sends, the number of gold, silver, and bronze medals won, and the overall medal count.
+
+The dataset includes the following variables: Country, representing the name of each country; Athletes, indicating the number of athletes sent to the Olympics by each country; and Gold, Silver, and Bronze, which denote the number of medals won in each respective category. Additionally, the dataset includes Total_Medals, representing the total number of medals won by each country.
+  
+Data Cleaning Steps:
+
+- 1. Filtered the data to include only countries with at least one medal.
+
+- 2. Calculated the ratio of athletes per medal.
+
+- 3. Removed team sports from the analysis to avoid skewing results due to larger teams.
+
+- 4. Filled missing values for some countries' athlete counts using historical data.
+
+Analysis
+The relationship between the number of athletes and total medal counts was analyzed through both a table and a plot. The table provides a clear overview of the countries with their corresponding athlete counts and medals, while the plot visualizes the positive correlation between athletes and medal counts.
+
 
 ```{r}
 #| label: tbl-one
-#| tbl-cap: test
-kable(head(filtered_data), caption = "Table 1")
+
+kable(head(filtered_data), caption = "Countries, Athletes, and Medal Counts")
 ```
 
 ```{r}
-interactive_plot
+#| label: fig-one
+
+interactive_plot_one
+
 ```
 
-The analysis demonstrates a significant correlation between the number of athletes and the number of medals won ( & [Figure 1](#fig-fig1)). Countries with a higher number of athletes generally secure more medals, suggesting that expanding the base of Olympic participants can lead to better overall performance. This finding highlights the inefficacy of strategies focused solely on rewarding medal winners and underscores the importance of investing in athlete development from a young age.
+The correlation between the number of athletes and total medals is apparent in both @tbl-one and @fig-one. Countries with more athletes generally win more medals, indicating that investing in a larger pool of athletes can lead to better Olympic performance.
 
 ```{r}
+#| label: fig-two
+
 figure2
 ```
 
-The distribution of the ratio of athletes per medal [Figure 2](#fig-fig2) further reinforces the importance of broadening participation. By examining the spread of this ratio, we observe that countries with a lower ratio—indicating more athletes for each medal won—are less common. This suggests that countries with fewer athletes per medal are relatively rare, reinforcing the idea that a higher number of participants is associated with better medal outcomes. Countries that focus exclusively on incentivizing medal-winning may overlook the crucial step of preparing a larger pool of athletes, which is essential for sustained success. Investing in youth and expanding athlete programs can yield significant long-term benefits, making it a more effective strategy for improving Olympic performance.
+@fig-two further reinforces the idea that countries with fewer athletes per medal (i.e., a more efficient conversion of athletes into medals) are rare. Most countries see a significant correlation between the number of athletes sent and the number of medals won.
 
-**Disclaimer**: It is important to note that the numbers are influenced by team sports such as football, where larger teams can skew the data. Despite this, the overall trend of a positive correlation between athlete numbers and medal counts remains valid.
-
-The findings suggest that countries aiming to boost their medal counts should shift their focus from short-term incentives to long-term athlete development. By investing in youth programs and increasing the number of athletes who qualify for the Olympics, nations are more likely to see improved medal outcomes. This approach emphasizes that success at the Olympics often follows from a broad base of qualified athletes rather than just a few high-profile winners.
-
-
+### Conclusion
+This analysis demonstrates that countries should focus on developing and sending more athletes to the Olympics rather than just incentivizing current medal winners. By broadening participation and investing in youth development, countries are likely to see improved long-term success in terms of medal counts. This strategy supports the idea that Olympic success is more attainable when countries expand their athlete base rather than focusing exclusively on a few high-profile athletes (CNBC, 2024).
 ### Reference
 
 -   Wikipedia. (2024). 2024 Summer Olympics medal table.
@@ -199,18 +218,6 @@ The findings suggest that countries aiming to boost their medal counts should sh
 -   Wickham, H. (2024). ggplot2: Create elegant data visualisations. https://cran.r-project.org/package=ggplot2
 -   OpenAI. (2024). ChatGPT: Language model for conversational AI. https://www.openai.com/chatgpt
 
-# Part B
 
-## Summary
 
-The report investigates the correlation between the number of athletes a country sends to the Olympics and the total number of medals won, highlighting that a broader base of qualified athletes leads to better overall performance. It suggests shifting from short-term incentives focused on medal-winning to long-term strategies aimed at increasing athlete participation and development.
 
-## Sections
-
--   **Background:** The first paragraph, describing the current focus on rewarding elite athletes and the need to broaden participation, starting with the sentence: "In the quest for Olympic success, many nations invest heavily in rewarding a few elite athletes with cash bonuses and other incentives."
-
--   **Lede:** The first two sentences, introducing the investigation into the correlation between the number of athletes and medals won, starting with the sentence: "This report explores the relationship between the number of athletes a country sends to the Olympics and the total number of medals won."
-
--   **Summary:** The last paragraph, reiterating the key findings and suggesting a strategic shift in athlete development, starting with the sentence: "The findings suggest that countries aiming to boost their medal counts should shift their focus from short-term incentives to long-term athlete development."
-
--   **Main Result:** The paragraphs discussing the analysis of the correlation and the distribution of athletes per medal, supported by @tbl-one, Figure 1 and Figure 2, starting with the sentence: "The analysis demonstrates a significant correlation between the number of athletes and the number of medals won (Figure 1)."
