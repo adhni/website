@@ -1,0 +1,70 @@
+---
+title: "AFL"
+format: html
+editor: visual
+---
+
+```{r}
+# Load necessary library
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+```
+
+
+```{r}
+# Create a data frame with the given data
+afl_data <- data.frame(
+  Year = c(2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014),
+  Winner = c("Brisbane Lions", "Collingwood Magpies", "Geelong Cats", "Melbourne Demons", 
+             "Richmond Tigers", "Richmond Tigers", "West Coast Eagles", "Richmond Tigers", 
+             "Western Bulldogs", "Hawthorn Hawks", "Hawthorn Hawks"),
+  Winner_Score = c(120, 90, 133, 140, 81, 114, 79, 108, 89, 107, 137),
+  Loser = c("Sydney Swans", "Brisbane Lions", "Sydney Swans", "Western Bulldogs", 
+            "Geelong Cats", "Greater Western Sydney", "Collingwood Magpies", 
+            "Adelaide Crows", "Sydney Swans", "West Coast Eagles", "Sydney Swans"),
+  Loser_Score = c(60, 86, 52, 66, 50, 25, 74, 60, 67, 61, 74)
+)
+
+# Add the 'Difference' column
+afl_data <- afl_data %>%
+  mutate(Difference = Winner_Score - Loser_Score)
+
+# Add the 'Difference/WinnerScore' column
+afl_data <- afl_data %>%
+  mutate(Diff_Winner_Score_Ratio = Difference / Winner_Score)
+
+# Display the updated data frame
+afl_data
+
+```
+
+```{r}
+# Reshape the data to long format but only for Winner_Score and Loser_Score
+afl_scores_long <- afl_data %>%
+  select(Year, Winner_Score, Loser_Score) %>%
+  pivot_longer(cols = c(Winner_Score, Loser_Score),
+               names_to = "Score_Type",
+               values_to = "Score")
+
+# Create the line plot with both Winner and Loser scores
+# Create the plot with both Winner and Loser scores, joined by a line within each year
+```
+
+
+```{r}
+ggplot(afl_data, aes(x = as.factor(Year))) +
+  geom_point(aes(y = Winner_Score, color = "Winner Score"), size = 5) +
+  geom_point(aes(y = Loser_Score, color = "Loser Score"), size = 5) +
+  geom_segment(aes(x = as.factor(Year), xend = as.factor(Year), y = Winner_Score, yend = Loser_Score), 
+               color = "black", linetype = "dashed", size = .2) +
+  labs(title = "AFL Grand Final: Winner vs Loser Scores Over the Last 10 Years",
+       x = "Year",
+       y = "Score",
+       color = "Score Type") +
+  theme_minimal()
+
+```
+
+
+

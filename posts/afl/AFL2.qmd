@@ -1,0 +1,118 @@
+---
+title: "AFL Grand Final"
+knitr:
+  opts_chunk:
+    echo: false
+    warning: false
+---
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(ggimage)
+library(grid)  
+library(png)
+library(DT)
+```
+
+```{r}
+# Create a data frame that includes team scores and logos from 2015 to 2024
+team_scores <- data.frame(
+  Year = c(2024, 2024, 2023, 2023, 2022, 2022, 2021, 2021, 
+           2020, 2020, 2019, 2019, 2018, 2018, 2017, 2017,
+           2016, 2016, 2015, 2015),
+  Team = c("Brisbane_Lions", "Sydney_Swans", "Collingwood_Magpies", "Brisbane_Lions", 
+           "Geelong_Cats", "Sydney_Swans", "Melbourne_Demons", "Western_Bulldogs",
+           "Richmond_Tigers", "Geelong_Cats", "Richmond_Tigers", "Greater_Western_Sydney",
+           "West_Coast_Eagles", "Collingwood_Magpies", "Richmond_Tigers", "Adelaide_Crows",
+           "Western_Bulldogs", "Sydney_Swans", "Hawthorn_Hawks", "West_Coast_Eagles"),
+  Score = c(120, 60, 90, 86, 133, 52, 140, 66, 81, 50, 114, 25, 79, 74, 108, 60, 89, 67, 107, 61),
+  Logo_Path = c("team_logos/Brisbane_Lions.png", "team_logos/Sydney_Swans.png",
+                "team_logos/Collingwood_Magpies.png", "team_logos/Brisbane_Lions.png",
+                "team_logos/Geelong_Cats.png", "team_logos/Sydney_Swans.png",
+                "team_logos/Melbourne_Demons.png", "team_logos/Western_Bulldogs.png",
+                "team_logos/Richmond_Tigers.png", "team_logos/Geelong_Cats.png",
+                "team_logos/Richmond_Tigers.png", "team_logos/GWS_Giants.png",
+                "team_logos/West_Coast_Eagles.png", "team_logos/Collingwood_Magpies.png",
+                "team_logos/Richmond_Tigers.png", "team_logos/Adelaide_Crows.png",
+                "team_logos/Western_Bulldogs.png", "team_logos/Sydney_Swans.png",
+                "team_logos/Hawthorn_Hawks.png", "team_logos/West_Coast_Eagles.png")
+)
+
+# Split into winners and losers
+winners <- team_scores[seq(1, nrow(team_scores), 2), ]
+losers <- team_scores[seq(2, nrow(team_scores), 2), ]
+```
+
+```{r}
+# Calculate score differences
+score_difference <- data.frame(
+  Year = winners$Year,
+  Difference = winners$Score - losers$Score
+)
+
+# Create a scatter plot with logos and a translucent bar plot for score differences
+fig_1<- ggplot() +
+  # Translucent bar plot in the background to represent score differences
+  geom_bar(data = score_difference, aes(x = as.factor(Year), y = Difference), 
+           stat = "identity", fill = "lightblue", alpha = 0.4) +  # Light blue, translucent bars
+  
+  # Winners' logos
+  geom_image(data = winners, aes(x = as.factor(Year), y = Score, image = Logo_Path), size = 0.1) +
+  
+  # Losers' logos
+  geom_image(data = losers, aes(x = as.factor(Year), y = Score, image = Logo_Path), size = 0.1) +
+  
+  # Dotted lines between winners and losers
+  geom_segment(aes(x = as.factor(winners$Year), xend = as.factor(losers$Year), 
+                   y = winners$Score, yend = losers$Score),
+               color = "darkblue", linetype = "dotted", size = 1.2) +  # Dark blue dotted line
+  
+  # Simple title and labels
+  labs(title = "AFL Grand Final Scores (2015–2024)", 
+       x = "Year", 
+       y = "Score") +
+  
+  # A clean theme with some grid lines for laptop view
+  theme_minimal(base_size = 16) + 
+  theme(
+    plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+    axis.title = element_text(face = "bold", size = 14),
+    axis.text = element_text(size = 12),
+    axis.ticks = element_blank()  # Remove axis ticks
+  )
+```
+
+```{r}
+#| label: fig-one
+fig_1
+```
+
+```{r}
+# Split into winners and losers
+winners <- team_scores[seq(1, nrow(team_scores), 2), ]
+losers <- team_scores[seq(2, nrow(team_scores), 2), ]
+
+# Combine winners and losers into a new data frame for the table
+final_table <- winners %>%
+  select(Year, Winner = Team, Winner_Score = Score, Winner_Logo = Logo_Path) %>%
+  left_join(losers %>% select(Year, Loser = Team, Loser_Score = Score, Loser_Logo = Logo_Path), by = "Year")
+
+# Create HTML image tags for the logos
+final_table$Winner_Logo <- paste0('<img src="', final_table$Winner_Logo, '" style="width:40px;height:40px;"/>')
+final_table$Loser_Logo <- paste0('<img src="', final_table$Loser_Logo, '" style="width:40px;height:40px;"/>')
+
+# Create the DT table
+datatable(final_table, escape = FALSE, 
+          options = list(
+            pageLength = 10, 
+            autoWidth = TRUE,
+            columnDefs = list(
+              list(targets = c(3, 4), orderable = FALSE)  # Disable sorting for logo columns
+            )
+          )) %>%
+  formatStyle(
+    columns = c(3, 4),
+    backgroundColor = "#f9f9f9"
+  )
+```
