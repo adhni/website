@@ -1,5 +1,4 @@
 ---
-title: "test"
 listing:
   contents: posts
   sort: "date desc"
