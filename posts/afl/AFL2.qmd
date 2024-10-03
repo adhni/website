@@ -1,12 +1,15 @@
 ---
 title: "AFL Grand Final"
+author: "Adhni Mulachela"
+date: "2024-10-03"
+categories: [Dumps]
 knitr:
   opts_chunk:
     echo: false
     warning: false
 ---
 
-```{r}
+```{r setup, include=FALSE }
 library(tidyverse)
 library(ggplot2)
 library(ggimage)
@@ -83,11 +86,31 @@ fig_1<- ggplot() +
   )
 ```
 
+
+
+
+
+
+### A Story of Triumph: The AFL Grand Finals (2015–2024)
+Once upon a time in the vibrant world of Australian Rules Football (AFL), a fierce rivalry unfolded over a decade, showcasing the dedication and spirit of teams that aimed for glory in the Grand Final. From 2015 to 2024, teams like the Brisbane Lions, Sydney Swans, and Richmond Tigers battled for the prestigious title, creating unforgettable moments that fans would cherish forever.
+
+### The Teams and Their Journeys
+In this tale, each year brought new champions and challenges. The Brisbane Lions roared into action, claiming victories with impressive scores, while the Sydney Swans showcased resilience, always ready to reclaim their spot in the limelight. The Collingwood Magpies and Geelong Cats also left their mark, fighting hard to secure their place in the hearts of fans.
+
+### Scoreboard Chronicles
+Each year from 2015 to 2024 was marked by thrilling matchups, where the scores told the story of triumph and heartbreak. The data revealed the highs and lows, with the winners proudly displaying their logos, signifying their hard-fought victories.
+
+
+### A Visual Representation of Glory
+To capture the essence of these battles, a stunning visualization was created. A scatter plot illustrated the fierce competition, showing the winners and losers side by side. Each logo represented a team’s journey, while translucent bars indicated the score differences, revealing the intensity of each matchup.
+
 ```{r}
 #| label: fig-one
 fig_1
 ```
 
+### The Legacy of the Winners
+Finally, a table emerged, showcasing the champions of each year. This table celebrated their victories, with logos adding a visual flair, reminding fans of the memorable moments that unfolded on the field.
 ```{r}
 # Split into winners and losers
 winners <- team_scores[seq(1, nrow(team_scores), 2), ]
@@ -116,3 +139,7 @@ datatable(final_table, escape = FALSE,
     backgroundColor = "#f9f9f9"
   )
 ```
+
+
+### Conclusion
+And so, the story of the AFL Grand Finals from 2015 to 2024 was etched in the memories of fans and players alike. Each score, each logo, and each game contributed to a rich tapestry of sporting history, celebrating the spirit of competition and the thrill of victory. As the years go by, these moments will continue to inspire future generations of players and fans in the exhilarating world of AFL.

@@ -3,16 +3,25 @@ title: "About Me"
 image: profile.jpg
 ---
 
-# Adhni Mulachela
 
 ::: {style="text-align: center;"}
 <img src="profile.jpeg" alt="Profile Photo" style="width: 600px; height: auto; max-width: 100%;"/>
 :::
 
-Welcome to my personal website! I am a Master of Business Analytics student at Monash University. Here, you'll find some of my assignments under the tag **"assignment"**, as well as posts on random topics I find interesting under the tag **"dumps"**. Feel free to explore my work and professional profiles below.
 
-### Profiles
 
--   [**Github**](https://github.com/adhni) ![Github](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png){width="30px"}
--   [**LinkedIn**](https://www.linkedin.com/in/adhni/) ![LinkedIn](https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png){width="30px"}
--   [**Resume**](resume.pdf)
+<div style="text-align: center; font-size: 1.5em;">
+  <a href="https://github.com/adhni" style="text-decoration: none; margin: 0 15px;">
+    <strong>Github</strong>
+    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="Github" style="width: 40px; margin-left: 5px;"/>
+  </a>
+  <a href="https://www.linkedin.com/in/adhni/" style="text-decoration: none; margin: 0 15px;">
+    <strong>LinkedIn</strong>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="width: 40px; margin-left: 5px;"/>
+  </a>
+</div>
+
+Welcome to my personal website! I’m Adhni Mulachela, originally from Indonesia. I’m currently pursuing a Master of Business Analytics at Monash University.
+
+Here, you’ll find a mix of my assignments under the tag "assignment" and some of my thoughts on various topics under the tag "dumps." Feel free to explore my work and professional profiles below!
+

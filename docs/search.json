@@ -4,14 +4,14 @@
     "href": "about.html",
     "title": "About Me",
     "section": "",
-    "text": "Adhni Mulachela\n\n\n\nWelcome to my personal website! I am a Master of Business Analytics student at Monash University. Here, you’ll find some of my assignments under the tag “assignment”, as well as posts on random topics I find interesting under the tag “dumps”. Feel free to explore my work and professional profiles below.\n\nProfiles\n\nGithub \nLinkedIn \nResume"
+    "text": "Github    LinkedIn  \n\nWelcome to my personal website! I’m Adhni Mulachela, originally from Indonesia. I’m currently pursuing a Master of Business Analytics at Monash University.\nHere, you’ll find a mix of my assignments under the tag “assignment” and some of my thoughts on various topics under the tag “dumps.” Feel free to explore my work and professional profiles below!"
   },
   {
     "objectID": "posts/Article/Article.html",
     "href": "posts/Article/Article.html",
     "title": "Rethinking Olympic Strategies",
     "section": "",
-    "text": "Olympic Image"
+    "text": "Rizky Juniansyah winning Indonesia’s first ever Weightlifting Gold Medal in Olympics History"
   },
   {
     "objectID": "posts/Article/Article.html#rethinking-olympic-strategies-the-correlation-between-number-of-athletes-and-medal-counts",
@@ -44,16 +44,16 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Adhni",
+    "title": "Adhni Mulachela",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nAFL\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAFL Grand Final\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDummyscores\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRethinking Olympic Strategies\n\n\n\n\n\n\nArticle\n\n\n\n\n\n\n\n\n\nOct 4, 2024\n\n\nAdhni Mulachela\n\n\n\n\n\n\n\n\n\n\n\n\nTEST\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nSep 13, 2024\n\n\nTEST\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nAug 13, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nRethinking Olympic Strategies\n\n\n\n\n\n\nArticle\n\n\n\n\n\n\n\n\n\nOct 4, 2024\n\n\nAdhni Mulachela\n\n\n\n\n\n\n\n\n\n\n\n\nAFL Grand Final\n\n\n\n\n\n\nDumps\n\n\n\n\n\n\n\n\n\nOct 3, 2024\n\n\nAdhni Mulachela\n\n\n\n\n\n\n\n\n\n\n\n\nTEST\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nSep 13, 2024\n\n\nTEST\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/afl/AFL2.html",
     "href": "posts/afl/AFL2.html",
     "title": "AFL Grand Final",
     "section": "",
-    "text": "── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\n\n\n\n\n\nFigure 1"
+    "text": "A Story of Triumph: The AFL Grand Finals (2015–2024)\nOnce upon a time in the vibrant world of Australian Rules Football (AFL), a fierce rivalry unfolded over a decade, showcasing the dedication and spirit of teams that aimed for glory in the Grand Final. From 2015 to 2024, teams like the Brisbane Lions, Sydney Swans, and Richmond Tigers battled for the prestigious title, creating unforgettable moments that fans would cherish forever.\n\n\nThe Teams and Their Journeys\nIn this tale, each year brought new champions and challenges. The Brisbane Lions roared into action, claiming victories with impressive scores, while the Sydney Swans showcased resilience, always ready to reclaim their spot in the limelight. The Collingwood Magpies and Geelong Cats also left their mark, fighting hard to secure their place in the hearts of fans.\n\n\nScoreboard Chronicles\nEach year from 2015 to 2024 was marked by thrilling matchups, where the scores told the story of triumph and heartbreak. The data revealed the highs and lows, with the winners proudly displaying their logos, signifying their hard-fought victories.\n\n\nA Visual Representation of Glory\nTo capture the essence of these battles, a stunning visualization was created. A scatter plot illustrated the fierce competition, showing the winners and losers side by side. Each logo represented a team’s journey, while translucent bars indicated the score differences, revealing the intensity of each matchup.\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\n\n\nThe Legacy of the Winners\nFinally, a table emerged, showcasing the champions of each year. This table celebrated their victories, with logos adding a visual flair, reminding fans of the memorable moments that unfolded on the field.\n\n\n\n\n\n\n\n\nConclusion\nAnd so, the story of the AFL Grand Finals from 2015 to 2024 was etched in the memories of fans and players alike. Each score, each logo, and each game contributed to a rich tapestry of sporting history, celebrating the spirit of competition and the thrill of victory. As the years go by, these moments will continue to inspire future generations of players and fans in the exhilarating world of AFL."
   },
   {
     "objectID": "posts/afl/dummyscores.html",

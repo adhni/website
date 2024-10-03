@@ -2,12 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/afl/Afl.html",
-      "/posts/afl/AFL2.html",
-      "/posts/afl/dummyscores.html",
       "/posts/Article/Article.html",
-      "/posts/Blog/Blog.html",
-      "/posts/welcome/index.html"
+      "/posts/afl/AFL2.html",
+      "/posts/Blog/Blog.html"
     ]
   }
 ]

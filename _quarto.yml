@@ -3,10 +3,9 @@ project:
   output-dir: docs
 
 website:
-  title: "Adhni"
-  reader-mode: true
+  title: "Adhni Mulachela"
+  reader-mode: false
   navbar:
-    logo: "profile.jpeg"
     left:
       - text: Home
         href: index.qmd
@@ -16,14 +15,12 @@ website:
         href: https://github.com/adhni
       - icon: linkedin
         href: https://www.linkedin.com/in/adhni/
-      - text: Resume 
-        href: resume.pdf  # Add this line
+      - text: Resume
+        href: resume.pdf
 
 format:
   html:
-    theme: journal
+    theme: flatly
     css: styles.css
     include-after-body: footer.Rhtml
-
-
-
+    metadata:
