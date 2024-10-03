@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "Adhni Mulachela\nWelcome to my personal website! Here are some links to my professional profiles:\n\n Github\n LinkedIn"
+  },
+  {
+    "objectID": "posts/Article/Article.html",
+    "href": "posts/Article/Article.html",
+    "title": "Rethinking Olympic Strategies",
+    "section": "",
+    "text": "Olympic Image"
+  },
+  {
+    "objectID": "posts/Article/Article.html#rethinking-olympic-strategies-the-correlation-between-number-of-athletes-and-medal-counts",
+    "href": "posts/Article/Article.html#rethinking-olympic-strategies-the-correlation-between-number-of-athletes-and-medal-counts",
+    "title": "Rethinking Olympic Strategies",
+    "section": "Rethinking Olympic Strategies: The Correlation Between Number of Athletes and Medal Counts",
+    "text": "Rethinking Olympic Strategies: The Correlation Between Number of Athletes and Medal Counts\n\nProblem Description\nThis report addresses the relationship between the number of athletes a country sends to the Olympics and its medal count. The analysis explores whether countries should shift their focus from rewarding medal-winning athletes through cash incentives to a more long-term strategy of increasing athlete participation, which could result in higher medal tallies.\n\n\nData Description\nThe data used in this analysis was sourced from the 2024 Summer Olympics medal table (Wikipedia, 2024). It includes variables for the total number of athletes a country sends, the number of gold, silver, and bronze medals won, and the overall medal count.\nThe dataset includes the following variables: Country, representing the name of each country; Athletes, indicating the number of athletes sent to the Olympics by each country; and Gold, Silver, and Bronze, which denote the number of medals won in each respective category. Additionally, the dataset includes Total_Medals, representing the total number of medals won by each country.\nData Cleaning Steps:\n\n\nFiltered the data to include only countries with at least one medal.\n\n\nCalculated the ratio of athletes per medal.\n\n\nRemoved team sports from the analysis to avoid skewing results due to larger teams.\n\n\nFilled missing values for some countries’ athlete counts using historical data.\n\n\nAnalysis The relationship between the number of athletes and total medal counts was analyzed through both a table and a plot. The table provides a clear overview of the countries with their corresponding athlete counts and medals, while the plot visualizes the positive correlation between athletes and medal counts.\n\n\n\n\nTable 1: Countries, Athletes, and Medal Counts\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCountry\nNumber_of_Athletes\nGold\nSilver\nBronze\nTotal\nRatio_Athletes_Per_Medal\n\n\n\n\nAustralia\n461\n18\n19\n16\n53\n8.698113\n\n\nAzerbaijan\n48\n2\n2\n3\n7\n6.857143\n\n\nBelgium\n165\n3\n1\n6\n10\n16.500000\n\n\nBrazil\n277\n3\n7\n10\n20\n13.850000\n\n\nBulgaria\n46\n3\n1\n3\n7\n6.571429\n\n\nCanada\n315\n9\n7\n11\n27\n11.666667\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\nThe correlation between the number of athletes and total medals is apparent in both Table 1 and Figure 1. Countries with more athletes generally win more medals, indicating that investing in a larger pool of athletes can lead to better Olympic performance.\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nFigure 2 further reinforces the idea that countries with fewer athletes per medal (i.e., a more efficient conversion of athletes into medals) are rare. Most countries see a significant correlation between the number of athletes sent and the number of medals won.\n\n\nConclusion\nThis analysis demonstrates that countries should focus on developing and sending more athletes to the Olympics rather than just incentivizing current medal winners. By broadening participation and investing in youth development, countries are likely to see improved long-term success in terms of medal counts. This strategy supports the idea that Olympic success is more attainable when countries expand their athlete base rather than focusing exclusively on a few high-profile athletes (CNBC, 2024). ### Reference\n\nWikipedia. (2024). 2024 Summer Olympics medal table.\nCNBC. (2024). Here’s how much athletes at the Paris Olympics earn for winning medals. Retrieved from CNBC\nR Core Team. (2024). R: A language and environment for statistical computing. R Foundation for Statistical Computing. https://www.R-project.org\nWickham, H., & Henry, L. (2024). rvest: Easily web scrape data. https://cran.r-project.org/package=rvest\nWickham, H. (2024). dplyr: A grammar of data manipulation. https://cran.r-project.org/package=dplyr\nWickham, H. (2024). stringr: Simple, consistent string manipulation. https://cran.r-project.org/package=stringr\nWickham, H. (2024). ggplot2: Create elegant data visualisations. https://cran.r-project.org/package=ggplot2\nOpenAI. (2024). ChatGPT: Language model for conversational AI. https://www.openai.com/chatgpt"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/Blog/Blog.html",
+    "href": "posts/Blog/Blog.html",
+    "title": "TEST",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "test",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nRethinking Olympic Strategies\n\n\n\n\n\n\nArticle\n\n\n\n\n\n\n\n\n\nOct 4, 2024\n\n\nAdhni Mulachela\n\n\n\n\n\n\n\n\n\n\n\n\nTEST\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nSep 13, 2024\n\n\nTEST\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\nnews\n\n\nabc\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nAug 16, 2024\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nAug 13, 2024\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+  }
+]
