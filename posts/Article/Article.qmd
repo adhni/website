@@ -134,7 +134,12 @@ filtered_data <- merged_data %>%
 
 
 ```{r}
-figure1 <- ggplot(filtered_data, aes(x = Number_of_Athletes, y = Total)) +  
+figure1 <- ggplot(filtered_data, 
+                  aes(x = Number_of_Athletes, 
+                      y = Total, 
+                      text = paste("Country: ", Country, 
+                                   "<br>No of Athletes: ", Number_of_Athletes, 
+                                   "<br>Total Medal: ", Total))) +  
   geom_point() +
   geom_smooth(method = "lm") +
   labs(title = "Figure 1: Number of Athletes vs. Total Medal",
@@ -144,7 +149,8 @@ figure1 <- ggplot(filtered_data, aes(x = Number_of_Athletes, y = Total)) +
   coord_cartesian(ylim = c(min(filtered_data$Total, na.rm = TRUE), 
                             quantile(filtered_data$Total, 0.95, na.rm = TRUE)))
 
-interactive_plot_one <- ggplotly(figure1)
+# Convert to plotly for interactivity
+interactive_plot_one <- ggplotly(figure1, tooltip = "text")
 
 figure2 <- ggplot(filtered_data, aes(x = Ratio_Athletes_Per_Medal)) +
   geom_histogram(binwidth = 5, fill = "blue", color = "black", alpha = 0.7) +
@@ -185,7 +191,15 @@ The relationship between the number of athletes and total medal counts was analy
 ```{r}
 #| label: tbl-one
 
+# Add the ratio to the existing data
+filtered_data$ratio <- filtered_data$Total / filtered_data$Number_of_Athletes
+
+# Sort the data by the ratio column
+filtered_data <- filtered_data[order(filtered_data$Total, decreasing = TRUE), ]
+
+# Display the first few rows of the sorted data using kable
 kable(head(filtered_data), caption = "Countries, Athletes, and Medal Counts")
+
 ```
 
 ```{r}
@@ -207,6 +221,7 @@ figure2
 
 ### Conclusion
 This analysis demonstrates that countries should focus on developing and sending more athletes to the Olympics rather than just incentivizing current medal winners. By broadening participation and investing in youth development, countries are likely to see improved long-term success in terms of medal counts. This strategy supports the idea that Olympic success is more attainable when countries expand their athlete base rather than focusing exclusively on a few high-profile athletes (CNBC, 2024).
+
 ### Reference
 
 -   Wikipedia. (2024). 2024 Summer Olympics medal table.
